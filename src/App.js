@@ -13,6 +13,7 @@ function App() {
   return (
     <div>
       <h1>APP FOR TESTING PRACTICE</h1>
+      <hr/>
       <UserForm onUserAdd={onUserAdd}/>
       <hr/>
       <UserList users={users}/>
