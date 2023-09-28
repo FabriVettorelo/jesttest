@@ -6,15 +6,28 @@ import UserList from "../components/UserList";
 
 describe("UserForm Component",()=>{
 
-    test('Renderizar una fila por usuario',()=>{
+    function renderComponent(){
         const users = [{name:'fabri',email:'fabri@fabri'},{name:'sofi',email:'sofi@sofi'}];
-        render(<UserList users={users}/>);    
+        render(<UserList users={users}/>);
+        return {users};
+    }
+    test('Renderizar una fila por usuario',()=>{
         
+       renderComponent(); 
+     //const {container} = render(<UserList users={users}/>);    
+    //const rows = container.querySelectorAll('tbody tr')
         const rows = within(screen.getByTestId('users')).getAllByRole('row')
-        expect(rows).toHaveLength(2)
-       
+        expect(rows).toHaveLength(2)     
     })
     test('Renderizar el email y nombre de cada usuario',()=>{
-
+        const {users} = renderComponent();
+         
+        for (let user of users) {
+            const name= screen.getByRole('cell',{name:user.name});
+            const email = screen.getByRole('cell',{name:user.email});
+            expect(name).toBeInTheDocument();
+            expect(email).toBeInTheDocument();
+            
+        }
     })
 })

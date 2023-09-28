@@ -35,5 +35,23 @@ describe("UserForm Component",()=>{
         expect(mock).toHaveBeenCalledWith({name:'jane',email:'jane@jane'});
 
     })
+    test('Al enviar los datos los input se vacian',async ()=>{
+        render(<UserForm onUserAdd={()=>{}}/>);
+
+        const nameInput= screen.getByRole('textbox',{name:/name/i});
+        const emailInput= screen.getByRole('textbox',{name:/email/i});
+        const button= screen.getByRole('button');
+
+        user.click(nameInput)
+        user.keyboard('jane')
+        user.click(emailInput)
+        user.keyboard('jane@jane')
+
+        await user.click(button)
+
+        expect(nameInput).toHaveValue('');
+        expect(emailInput).toHaveValue('');
+
+    })
 
 })
