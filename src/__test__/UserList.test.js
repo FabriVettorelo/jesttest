@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import user from '@testing-library/user-event'
 import { render, screen, fireEvent, within} from '@testing-library/react'
 import UserList from "../components/UserList";
+import { act } from "react-dom/test-utils";
 
 describe("UserForm Component",()=>{
 
@@ -16,8 +17,11 @@ describe("UserForm Component",()=>{
        renderComponent(); 
      //const {container} = render(<UserList users={users}/>);    
     //const rows = container.querySelectorAll('tbody tr')
+    act(()=>{
         const rows = within(screen.getByTestId('users')).getAllByRole('row')
-        expect(rows).toHaveLength(2)     
+        expect(rows).toHaveLength(2) 
+    })
+            
     })
     test('Renderizar el email y nombre de cada usuario',()=>{
         const {users} = renderComponent();

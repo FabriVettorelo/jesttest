@@ -1,34 +1,36 @@
 import '@testing-library/jest-dom/extend-expect'
 import user from '@testing-library/user-event'
-import { render, screen, fireEvent, within} from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import App from '../App';
 
-describe("App Main File",()=>{
-  test('Puede recibir un nuevo user y mostrarlo en la lista', async() => {
+describe("App Main File", () => {
+  test('Puede recibir un nuevo user y mostrarlo en la lista', async () => {
     render(<App />);
 
     const nameInput = screen.getByRole('textbox', {
-        name:/name/i,
+      name: /name/i,
     });
     const emailInput = screen.getByRole('textbox', {
-        name:/email/i,
+      name: /email/i,
     });
     const button = screen.getByRole('button');
 
-    user.click(nameInput);
-    user.keyboard('jane');
-    user.click(emailInput);
-    user.keyboard('jane@gmail.com'); 
+    act(() => {
+      user.click(nameInput);
+      user.keyboard('jane');
+      user.click(emailInput);
+      user.keyboard('jane@gmail.com');
 
-    user.click(button);
+      user.click(button);
+    });
 
     await screen.findByText('jane');
     await screen.findByText('jane@gmail.com');
 
-    const name = screen.getByRole('cell',{name:'jane'});
-    const email = screen.getByRole('cell',{name:'jane@gmail.com'})
+    const name = screen.getByRole('cell', { name: 'jane' });
+    const email = screen.getByRole('cell', { name: 'jane@gmail.com' });
 
     expect(name).toBeInTheDocument();
     expect(email).toBeInTheDocument();
   });
-})
+});
