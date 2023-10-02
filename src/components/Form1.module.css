@@ -1,0 +1,61 @@
+.geoForm {
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18vw;
+    padding: 1vw;
+    border-radius:5px;
+    box-shadow: 3px 3px 13px -1px rgba(133, 133, 133, 0.671);
+    width: 31%;
+  }
+  
+  .inputForm {
+    background-color: #ececec;
+    width: 22vw;
+    padding: 0.5vh;
+    border-radius: 5px;
+    border: solid 1px #cacaca;
+    font-size: 1.5vh;
+  }
+
+  .blueButtonForm{
+    margin-top:2vh;
+    align-self: flex-end;
+    background-color: #0d83f8;
+    color: white;
+    padding: .55vh;
+    border-radius: .5vh;
+    font-weight: bold; 
+    font-size: 1.5vh;
+    width: 9vw; 
+  }
+
+  .title{
+    align-self: start;
+    font-size: 2.2vh;
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+ }
+
+ .field {
+    height: 8vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .label {
+    font-size: 1.5vh;
+ }
+
+ .error {
+  color:  rgb(196, 34, 34);
+  font-size: 1vh;
+}
+
+.noerror {
+  color: rgba(255, 255, 255, 0);
+  font-size: 1vh;
+}
